@@ -29,16 +29,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    _mpPickerVC = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
+    _mpPickerVC.prompt = @"음악을 선택해 주세요";
+    _mpPickerVC.allowsPickingMultipleItems = YES;
+    _mpPickerVC.showsCloudItems = YES;
     _mpPickerVC.delegate = self;
-    
+    _appMusicPlayer = [MPMusicPlayerController systemMusicPlayer];
 }
 
 
 
-
+//미디어 픽커 선택
 - (IBAction)onPick:(id)sender {
-    NSLog(@"%@", @"onPick");
+    NSLog(@"%@", @"onPick 작동");
+    
+    [self presentViewController:_mpPickerVC animated:YES completion:^{
+       NSLog(@"%@", @"미디어 픽커 라이브러리를 선택했습니다.");
+    }];
+    
 }
 
 - (IBAction)onQuery:(id)sender {
@@ -64,13 +72,16 @@
 
 //미디어 픽커 선택
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection{
-     NSLog(@"%@", @"didPickMediaItems");
+     NSLog(@"%@", @"didPickMediaItems - 선택되었습니다.");
 }
 
 
 //미디어 픽커 취소 델리게이트 메소드
 - (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker{
-     NSLog(@"%@", @"mediaPickerDidCancel");
+     NSLog(@"%@", @"mediaPickerDidCancel -  취소클릭");
+    [_mpPickerVC dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"%@", @"mediaPickerDidCancel -  닫혔습니다.");
+    }];
 }
 
 
