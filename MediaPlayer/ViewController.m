@@ -35,6 +35,48 @@
     _mpPickerVC.showsCloudItems = YES;
     _mpPickerVC.delegate = self;
     _appMusicPlayer = [MPMusicPlayerController systemMusicPlayer];
+    
+    
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    //불륨이 변경될때
+    [notificationCenter  addObserver: self
+                            selector: @selector (onVolumeChange:)
+                                name: MPMusicPlayerControllerVolumeDidChangeNotification
+                              object: _appMusicPlayer];
+     //상태가 변경될때
+    [notificationCenter  addObserver: self
+                            selector: @selector (onStateChange:)
+                                name: MPMusicPlayerControllerPlaybackStateDidChangeNotification
+                              object: _appMusicPlayer];
+    
+    //재생되는 음원이 변경될때
+    [notificationCenter  addObserver: self
+                            selector: @selector (onNowPlaying:)
+                                name: MPMusicPlayerControllerNowPlayingItemDidChangeNotification
+                              object: _appMusicPlayer];
+    // 시작
+    [_appMusicPlayer beginGeneratingPlaybackNotifications];
+    
+}
+
+
+#pragma mark Notifaction
+//상태가 변경될때
+- (void) onStateChange: (NSNotification*) notification {
+    NSLog(@"onStateChange - notification");
+}
+//플레이 음원이  변경될때
+- (void) onNowPlaying: (NSNotification*) notification {
+    NSLog(@"onNowPlaying - notification");
+    MPMusicPlayerController *player = notification.object;
+    MPMediaItem *item = [player nowPlayingItem];
+    NSLog(@"now playing %@", [item valueForKey:MPMediaItemPropertyTitle]);
+}
+//볼륨이  변경될때
+- (void) onVolumeChange: (NSNotification*) notification {
+    NSLog(@"onVolumeChange - notification");
 }
 
 
