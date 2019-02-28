@@ -76,8 +76,54 @@
     
 }
 
+//가수이름으로 곡 찾기
+-(void)quertArtist : (NSString *)artist {
+    //초기화
+    MPMediaQuery *artistQry = [[MPMediaQuery alloc]init];
+    MPMediaPropertyPredicate *artistNamePredicate =
+    [MPMediaPropertyPredicate predicateWithValue:artist forProperty:MPMediaItemPropertyArtist];
+    [artistQry addFilterPredicate:artistNamePredicate];
+    
+    //null 체크
+    for (MPMediaItem *item in [artistQry items]) {
+        if (NULL == item) {
+            NSLog(@"null 값이 존재합니다.");
+            continue;
+        }
+        //정보 추출
+        NSString *title = [item valueForKey:MPMediaItemPropertyTitle];
+        NSURL  *url = [item valueForKey:MPMediaItemPropertyAssetURL];
+        NSString *artist = [item valueForKey:MPMediaItemPropertyArtist];
+        NSString *lyrics = [item valueForKey:MPMediaItemPropertyLyrics];
+        MPMediaItemArtwork *artwork = [item valueForProperty: MPMediaItemPropertyArtwork];
+        UIImage *artworkImage = [artwork imageWithSize: CGSizeMake(200, 200)];
+        
+        NSLog(@"After search with sound: %@ with url %@ artist is %@", title, [item valueForKey:MPMediaItemPropertyAssetURL], [item valueForKey:MPMediaItemPropertyArtist]);
+        
+    }// forin -end
+    
+    
+    _slctitems = [MPMediaItemCollection collectionWithItems:artistQry.items];
+    [_previousBtn setEnabled:NO];
+    //목록 업데이트
+    [self updateList:_slctitems];
+    [_appMusicPlayer setQueueWithItemCollection:_slctitems];
+    
+    
+}
+
+
 - (IBAction)onQuery:(id)sender {
-     NSLog(@"%@", @"onQuery");
+     NSLog(@"%@", @"onQuery 버튼 작동");
+    
+    if (_artistaSearchBar.text == NULL || _artistaSearchBar.text.length == 0) {
+        return;
+    }
+    
+    //검색바의 텍스트를 쿼리아티스트 메소드에 넘겨줌
+    [self quertArtist:_artistaSearchBar.text];
+    
+    
 }
 
 - (IBAction)onPrevious:(id)sender {
