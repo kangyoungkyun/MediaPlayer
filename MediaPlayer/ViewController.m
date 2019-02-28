@@ -128,6 +128,19 @@
 
 - (IBAction)onPrevious:(id)sender {
      NSLog(@"%@", @"onPrevious 버튼 클릭");
+    NSLog(@"현재 재생되고 있는 노래 index : %lu", (unsigned long)_appMusicPlayer.indexOfNowPlayingItem);
+    NSLog(@"queue에 존재하는 음악 목록 총 개수: %lu", (_slctitems.count));
+    if (NULL == _appMusicPlayer) {
+        return;
+    }
+    
+    if (_appMusicPlayer.indexOfNowPlayingItem <=1) {
+        [_previousBtn setEnabled:NO];
+    }
+    [_appMusicPlayer skipToPreviousItem];
+    
+    [_nextBtn setEnabled:YES];
+
 }
 
 
@@ -169,6 +182,15 @@
 
 - (IBAction)onNext:(id)sender {
      NSLog(@"%@", @"onNext 버튼 클릭");
+    NSLog(@"현재 재생되고 있는 노래 index : %lu", (unsigned long)_appMusicPlayer.indexOfNowPlayingItem);
+    NSLog(@"queue에 존재하는 음악 목록 총 개수: %lu", (_slctitems.count));
+    if (_appMusicPlayer.indexOfNowPlayingItem >= (_slctitems.count -2)) {
+        [_nextBtn setEnabled:NO];
+    }
+    
+    [_appMusicPlayer skipToNextItem];
+    
+    [_previousBtn setEnabled:YES];
 }
 
 
