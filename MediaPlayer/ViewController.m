@@ -127,13 +127,48 @@
 }
 
 - (IBAction)onPrevious:(id)sender {
-     NSLog(@"%@", @"onPrevious");
+     NSLog(@"%@", @"onPrevious 버튼 클릭");
 }
+
+
+
+
 - (IBAction)onPlay:(id)sender {
-     NSLog(@"%@", @"onPlay");
+    NSLog(@"%@", @"onPlay 버튼 클릭");
+    NSLog(@"현재 재생되고 있는 노래 index : %lu", (unsigned long)_appMusicPlayer.indexOfNowPlayingItem);
+    NSLog(@"queue에 존재하는 음악 목록 총 개수: %lu", (_slctitems.count));
+    
+    static BOOL isPlay = NO;
+    if (NULL == _appMusicPlayer) {
+         NSLog(@"%@", @"null이 존재합니다.");
+        return;
+    }
+    
+
+    
+    /*
+     //MPMusicPlayerController에 큐가 없을 경우 에러 발생
+     2019-02-28 16:33:03.475540+0900 MediaPlayer[7370:1670897] [SDKPlayback] -[MPMusicPlayerController prepareToPlay] completed error: Error Domain=MPMusicPlayerControllerErrorDomain Code=1 "prepareToPlay without a queue" UserInfo={NSDebugDescription=prepareToPlay without a queue}
+     */
+    
+    
+    if (!isPlay) {
+        isPlay = YES;
+        [_playBtn setTitle:@"stop" forState:UIControlStateNormal];
+        [_appMusicPlayer play];
+    }else{
+        isPlay = NO;
+        [_playBtn setTitle:@"Play" forState:UIControlStateNormal];
+        [_appMusicPlayer pause];
+    }
+    
 }
+
+
+
+
 - (IBAction)onNext:(id)sender {
-     NSLog(@"%@", @"onNext");
+     NSLog(@"%@", @"onNext 버튼 클릭");
 }
 
 
