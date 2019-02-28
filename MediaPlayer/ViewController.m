@@ -73,6 +73,35 @@
 //미디어 픽커 선택
 - (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection{
      NSLog(@"%@", @"didPickMediaItems - 선택되었습니다.");
+    
+    //선택한 음원 개수
+    NSLog(@"picked with %lu items", (unsigned long)[mediaItemCollection count]);
+    
+    //null 값 체크
+    if (NULL == mediaItemCollection) {
+        NSLog(@"mediaItemCollection이 null 입니다.");
+        return;
+    }
+    
+    //선택한 음원들 하나하나 null 값 체크
+    for (MPMediaItem *item in [mediaItemCollection items]) {
+        if (NULL == item) {
+            NSLog(@"item이 null 입니다.");
+            continue;
+        }
+        
+        NSString *title = [item valueForKey:MPMediaItemPropertyTitle];
+         NSString *url = [item valueForKey:MPMediaItemPropertyAssetURL];
+         NSString *artist = [item valueForKey:MPMediaItemPropertyArtist];
+        
+        NSLog(@"title : %@" , title);
+          NSLog(@"url : %@" , url);
+          NSLog(@"artist : %@" , artist);
+    } //for - end
+    
+    _slctitems = mediaItemCollection;
+    [_appMusicPlayer setQueueWithItemCollection:_slctitems];
+    
 }
 
 
