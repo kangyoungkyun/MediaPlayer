@@ -14,6 +14,7 @@
 		2F71B90822279B96005935C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F71B90722279B96005935C0 /* Assets.xcassets */; };
 		2F71B90B22279B96005935C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F71B90922279B96005935C0 /* LaunchScreen.storyboard */; };
 		2F71B90E22279B96005935C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F71B90D22279B96005935C0 /* main.m */; };
+		2F71B91622279CF7005935C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F71B91522279CF7005935C0 /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2F71B90A22279B96005935C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F71B90C22279B96005935C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F71B90D22279B96005935C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2F71B91522279CF7005935C0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F71B91622279CF7005935C0 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +49,7 @@
 			children = (
 				2F71B8FA22279B95005935C0 /* MediaPlayer */,
 				2F71B8F922279B95005935C0 /* Products */,
+				2F71B91422279CF7005935C0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +76,14 @@
 				2F71B90422279B95005935C0 /* MediaPlayer.xcdatamodeld */,
 			);
 			path = MediaPlayer;
+			sourceTree = "<group>";
+		};
+		2F71B91422279CF7005935C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F71B91522279CF7005935C0 /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
