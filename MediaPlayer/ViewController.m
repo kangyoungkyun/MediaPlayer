@@ -29,24 +29,51 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+   
+    _mpPickerVC.delegate = self;
+    
 }
 
 
 
 
 - (IBAction)onPick:(id)sender {
+    NSLog(@"%@", @"onPick");
 }
 
 - (IBAction)onQuery:(id)sender {
+     NSLog(@"%@", @"onQuery");
 }
 
 - (IBAction)onPrevious:(id)sender {
+     NSLog(@"%@", @"onPrevious");
 }
 - (IBAction)onPlay:(id)sender {
+     NSLog(@"%@", @"onPlay");
 }
 - (IBAction)onNext:(id)sender {
+     NSLog(@"%@", @"onNext");
 }
+
+
+
+
+
+
+#pragma mark  MPMediaPickerControllerDelegate
+
+//미디어 픽커 선택
+- (void)mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)mediaItemCollection{
+     NSLog(@"%@", @"didPickMediaItems");
+}
+
+
+//미디어 픽커 취소 델리게이트 메소드
+- (void)mediaPickerDidCancel:(MPMediaPickerController *)mediaPicker{
+     NSLog(@"%@", @"mediaPickerDidCancel");
+}
+
+
 
 
 - (void)didReceiveMemoryWarning {
