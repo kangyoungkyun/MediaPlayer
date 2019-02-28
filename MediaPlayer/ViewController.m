@@ -38,10 +38,37 @@
 }
 
 
+//미디어 픽커에서 곡이 선택될때 - 업데이트
+-(void)updateList:(MPMediaItemCollection *) collection {
+    
+    NSString *txt = @"";
+    NSString *tag = @"";
+    for (MPMediaItem *item in [collection items]) {
+        if(NULL == item){
+            NSLog(@"null이 존재합니다.");
+            continue;
+        }
+        
+        NSString *title = [item valueForKey:MPMediaItemPropertyTitle];
+        NSString *artist = [item valueForKey:MPMediaItemPropertyArtist];
+        txt = [NSString stringWithFormat:@"%@ %@ %@ - %@",txt,tag,title,artist];
+        tag = @"\n";
+    }
+    
+    _soundsTV.text = txt;
+    
+}
+
 
 //미디어 픽커 선택
 - (IBAction)onPick:(id)sender {
     NSLog(@"%@", @"onPick 작동");
+    
+//     _mpPickerVC = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
+//    _mpPickerVC.prompt = @"음악을 선택해 주세요";
+//    _mpPickerVC.allowsPickingMultipleItems = YES;
+//    _mpPickerVC.showsCloudItems = YES;
+//    _mpPickerVC.delegate = self;
     
     [self presentViewController:_mpPickerVC animated:YES completion:^{
        NSLog(@"%@", @"미디어 픽커 라이브러리를 선택했습니다.");
@@ -91,17 +118,21 @@
         }
         
         NSString *title = [item valueForKey:MPMediaItemPropertyTitle];
-         NSString *url = [item valueForKey:MPMediaItemPropertyAssetURL];
-         NSString *artist = [item valueForKey:MPMediaItemPropertyArtist];
+        NSString *url = [item valueForKey:MPMediaItemPropertyAssetURL];
+        NSString *artist = [item valueForKey:MPMediaItemPropertyArtist];
         
         NSLog(@"title : %@" , title);
-          NSLog(@"url : %@" , url);
-          NSLog(@"artist : %@" , artist);
+        NSLog(@"url : %@" , url);
+        NSLog(@"artist : %@" , artist);
     } //for - end
     
     _slctitems = mediaItemCollection;
     [_appMusicPlayer setQueueWithItemCollection:_slctitems];
-    
+    [self updateList:_slctitems];
+    [_previousBtn setEnabled:NO];
+    [_mpPickerVC dismissViewControllerAnimated:YES completion:^{
+        //
+    }];
 }
 
 
