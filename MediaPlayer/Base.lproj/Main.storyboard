@@ -22,11 +22,17 @@
                                 <rect key="frame" x="40" y="34" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="선택"/>
+                                <connections>
+                                    <action selector="onPick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e0m-KM-Psd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIJ-Du-RDd">
                                 <rect key="frame" x="267" y="34" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="검색"/>
+                                <connections>
+                                    <action selector="onQuery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P22-7h-cE1"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="artist" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IFF-7C-BsQ">
                                 <rect key="frame" x="63" y="78" width="248" height="30"/>
@@ -46,21 +52,37 @@
                                 <rect key="frame" x="65" y="248" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="pre"/>
+                                <connections>
+                                    <action selector="onPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jzf-e7-oem"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NjN-NU-PfX">
                                 <rect key="frame" x="164" y="248" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="play"/>
+                                <connections>
+                                    <action selector="onPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D0z-JY-Din"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSE-OZ-hMP">
                                 <rect key="frame" x="279" y="248" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="next"/>
+                                <connections>
+                                    <action selector="onNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yHw-E6-ALp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96268421411514282" green="0.87583786249160767" blue="0.85577374696731567" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="artistaSearchBar" destination="IFF-7C-BsQ" id="WR8-i0-Dee"/>
+                        <outlet property="nextBtn" destination="CSE-OZ-hMP" id="XAu-D0-ZhX"/>
+                        <outlet property="playBtn" destination="NjN-NU-PfX" id="K4m-wv-t2b"/>
+                        <outlet property="previousBtn" destination="osb-Li-uIb" id="A3X-FN-SPi"/>
+                        <outlet property="soundsTV" destination="imw-jl-Bnf" id="tdL-XJ-3rF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
